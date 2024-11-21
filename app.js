@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const authRoutes = require('./routes/route')
 const cookieParser = require('cookie-parser')
+require('dotenv').config()
 
 const app = express();
 
@@ -14,8 +15,8 @@ app.use(cookieParser())
 app.set('view engine', 'ejs');
 
 // database connection
-const dbURI = 'mongodb+srv://fajobimichael123:Oluwaseun2001@smoothie-users.xvsh3.mongodb.net/?retryWrites=true&w=majority&appName=smoothie-users'
-mongoose.connect(dbURI)
+
+mongoose.connect(process.env.DB_URI)
   .then((result) => app.listen(3000), console.log('listening'))
   .catch((err) => console.log(err));
 
